@@ -23,12 +23,14 @@ its own.
 ## Requirements
 
 - A C compiler with C11 support (`cc` or GCC)
+- GNU Make
 - OpenSSL development headers and libraries
 - Git LFS to download the large CRPS dataset
 - `libm` for entropy analysis
+- A `zip` utility to run the Excel workbook exporter
 
-On Windows, use a POSIX-compatible environment such as WSL, with the compiler
-and OpenSSL development package installed there.
+On Windows, use a POSIX-compatible environment such as WSL, with GNU Make, a C
+compiler, and the OpenSSL development package installed there.
 
 ## Get the data
 
@@ -47,26 +49,21 @@ If the CSV contains only a short Git LFS pointer instead of dataset rows, run
 
 ## Build
 
-There is no build-system file yet. From the repository root, build the tools
-with a C compiler and OpenSSL:
+From the repository root, build all tools and the shared cryptography library:
 
 ```sh
-mkdir -p bin
+make
+```
 
-cc -O2 -std=c11 -Wall -Wextra -Iinclude \
-  src/registration.c src/bch.c src/fuzzy_extractor.c \
-  src/secr2r_ecc_elgamal.c src/secr2r_hash.c \
-  src/secr2r_protocol_crypto.c src/secure_random.c \
-  -lcrypto -o bin/registration
+The executables are written to `bin/`: `registration`, `authentication`,
+`entropy_analysis`, and `xlsx_export`. The reusable cryptography library is
+`bin/libsecr2r.a`. Override build settings if needed, for example
+`make CC=clang` or `make BIN_DIR=build`.
 
-cc -O2 -std=c11 -Wall -Wextra -Iinclude \
-  src/authentication.c src/bch.c src/fuzzy_extractor.c \
-  src/secr2r_ecc_elgamal.c src/secr2r_hash.c \
-  src/secr2r_protocol_crypto.c src/secure_random.c \
-  -lcrypto -o bin/authentication
+Remove generated build outputs with:
 
-cc -O2 -std=c11 -Wall -Wextra \
-  src/entropy_analysis.c -lm -o bin/entropy_analysis
+```sh
+make clean
 ```
 
 ## Run
@@ -108,6 +105,12 @@ Entropy analysis also writes weekly, per-cell, and per-device enrollment
 summary CSVs alongside the requested output. Its empirical marginal entropy
 estimates are not formal joint conditional min-entropy bounds; see the
 interpretation column in `results/entropy_summary.csv`.
+
+Export the existing entropy CSV summaries to an Excel workbook with:
+
+```sh
+./bin/xlsx_export results results/SecR2R_C_Entropy_Results.xlsx
+```
 
 ## Sensitive outputs
 
