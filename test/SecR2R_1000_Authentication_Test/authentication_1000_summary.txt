@@ -1,0 +1,19 @@
+SecR2R authentication 1000-run test report
+===========================================
+Requested runs: 1000
+Completed runs: 1000
+Runs with exit code 0: 1000
+Runs with all four message records captured: 1000
+Session-key matches (SK_A == SK_B): 1000
+Session-key mismatches: 0
+Runs that did not reach session-key comparison: 0
+Approximate elapsed execution time: 52.34 seconds
+
+Message rows and distinct message records:
+  M_A: 1000 rows; 1000 distinct records
+  M_s1: 1000 rows; 1000 distinct records
+  M_B: 1000 rows; 1000 distinct records
+  M_s2: 1000 rows; 1000 distinct records
+
+Result: all 1000 runs completed with all four messages captured and matching session keys.
+The CSVs contain the per-run message fields in hexadecimal form.

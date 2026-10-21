@@ -1,0 +1,20 @@
+metric,value,unit,interpretation
+devices,84,count,unique device IDs
+weekly_readouts,9,count,chronologically ordered unique timestamps
+regions_per_readout,160,count,unique SRAM region addresses
+physical_selected_cells,512,count,selected physical cells
+cryptographic_cells,510,count,first 510 selected cells used for crypto
+reserved_cells,2,count,last two selected cells reserved
+training_uniformity,49.116479925303,percent,all device-week training bits
+training_uniqueness,50.030711079613,percent,mean pairwise HD of per-device enrollment responses
+training_BER,1.158963585434,percent,mean per-device per-week Hamming distance from enrollment
+training_max_HD,17,bits,maximum per device-week training HD
+holdout_uniformity,49.032212885154,percent,all device-week holdout bits
+holdout_uniqueness,49.939702788746,percent,mean pairwise HD using first holdout week
+holdout_BER,2.108776844071,percent,mean per-device per-week Hamming distance from enrollment
+holdout_max_HD,24,bits,maximum per device-week holdout HD
+enrollment_sum_marginal_min_entropy,446.556840949432,bits,empirical sum of per-cell marginal min-entropy across devices
+enrollment_sum_marginal_Shannon_entropy,505.829426280921,bits,empirical sum of per-cell binary Shannon entropies across devices
+BCH_helper_leakage_accounting,232,bits,2 blocks times 116 redundancy bits; accounting assumption not measured entropy
+heuristic_post_helper_entropy,214.556840949432,bits,marginal estimate minus leakage accounting; NOT a formal conditional min-entropy bound
+LHL_log2_epsilon_using_marginal_estimate,-44.278420474716,log2 epsilon,illustrative only using heuristic post-helper estimate; NOT a security claim because input is not a proven conditional min-entropy bound

@@ -1,0 +1,816 @@
+cc -O2 -std=c11 -Wall -Wextra -Wpedantic -Iinclude tests/test_fuzzy_extractor.c src/bch.c src/secure_random.c src/fuzzy_extractor.c src/secr2r_hash.c src/secr2r_ecc_elgamal.c src/secr2r_ecies.c src/secr2r_protocol_crypto.c  -lssl -lcrypto  -o bin/test_fuzzy_extractor
+src/secr2r_ecies.c: In function 'key_from_private':
+src/secr2r_ecies.c:16:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   16 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+In file included from src/secr2r_ecies.c:4:
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:18:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   18 |     group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1067:27: note: declared here
+ 1067 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_private_key(EC_KEY *key, const BIGNUM *prv);
+      |                           ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:25:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   25 |         EC_KEY_check_key(key) != 1) goto err;
+      |         ^~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:28:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   28 |     BN_clear_free(d); EC_POINT_free(q); EC_KEY_free(key); return NULL;
+      |     ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'parse_public':
+src/secr2r_ecies.c:34:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   34 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:36:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   36 |     group = EC_KEY_get0_group(key); point = EC_POINT_new(group);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:41:9: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   41 |         EC_POINT_free(point); EC_KEY_free(key); return 0;
+      |         ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'serialize_public':
+src/secr2r_ecies.c:47:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   47 |     const EC_GROUP *group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:48:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   48 |     const EC_POINT *point = EC_KEY_get0_public_key(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'derive_key':
+src/secr2r_ecies.c:57:5: warning: 'ECDH_compute_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1307:27: note: declared here
+ 1307 | OSSL_DEPRECATEDIN_3_0 int ECDH_compute_key(void *out, size_t outlen,
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:57:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_keygen':
+src/secr2r_ecies.c:78:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   78 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:79:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   79 |     if (!key || EC_KEY_generate_key(key) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:80:5: warning: 'EC_KEY_get0_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   80 |     d = EC_KEY_get0_private_key(key);
+      |     ^
+/usr/include/openssl/ec.h:1059:37: note: declared here
+ 1059 | OSSL_DEPRECATEDIN_3_0 const BIGNUM *EC_KEY_get0_private_key(const EC_KEY *key);
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:85:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   85 |     EC_KEY_free(key); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_encrypt':
+src/secr2r_ecies.c:98:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   98 |     ephemeral = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~~~~~~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:99:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   99 |     if (!ephemeral || EC_KEY_generate_key(ephemeral) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_decrypt':
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+./bin/test_fuzzy_extractor
+SecR2R FE test: BCH(255,139,15) x 2; 128-bit output
+Synthetic test vector only; not a physical SRAM-PUF reading.
+errors/block= 0 decode=OK corrected=(0,0) key_match=YES
+errors/block= 1 decode=OK corrected=(1,1) key_match=YES
+errors/block= 2 decode=OK corrected=(2,2) key_match=YES
+errors/block= 5 decode=OK corrected=(5,5) key_match=YES
+errors/block=10 decode=OK corrected=(10,10) key_match=YES
+errors/block=15 decode=OK corrected=(15,15) key_match=YES
+helper_data_bytes=110 (30 syndrome bytes + 80 packed seed bytes)
+OS CSPRNG enrollment/reconstruction: PASS (15 flips per block)
+PASS: all implemented functional tests passed.
+Caution: tests do not prove conditional min-entropy or extractor security.
+cc -O2 -std=c11 -Wall -Wextra -Wpedantic -Iinclude tests/test_ecc_elgamal.c src/bch.c src/secure_random.c src/fuzzy_extractor.c src/secr2r_hash.c src/secr2r_ecc_elgamal.c src/secr2r_ecies.c src/secr2r_protocol_crypto.c  -lssl -lcrypto  -o bin/test_ecc_elgamal
+src/secr2r_ecies.c: In function 'key_from_private':
+src/secr2r_ecies.c:16:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   16 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+In file included from src/secr2r_ecies.c:4:
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:18:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   18 |     group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1067:27: note: declared here
+ 1067 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_private_key(EC_KEY *key, const BIGNUM *prv);
+      |                           ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:25:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   25 |         EC_KEY_check_key(key) != 1) goto err;
+      |         ^~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:28:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   28 |     BN_clear_free(d); EC_POINT_free(q); EC_KEY_free(key); return NULL;
+      |     ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'parse_public':
+src/secr2r_ecies.c:34:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   34 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:36:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   36 |     group = EC_KEY_get0_group(key); point = EC_POINT_new(group);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:41:9: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   41 |         EC_POINT_free(point); EC_KEY_free(key); return 0;
+      |         ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'serialize_public':
+src/secr2r_ecies.c:47:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   47 |     const EC_GROUP *group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:48:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   48 |     const EC_POINT *point = EC_KEY_get0_public_key(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'derive_key':
+src/secr2r_ecies.c:57:5: warning: 'ECDH_compute_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1307:27: note: declared here
+ 1307 | OSSL_DEPRECATEDIN_3_0 int ECDH_compute_key(void *out, size_t outlen,
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:57:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_keygen':
+src/secr2r_ecies.c:78:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   78 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:79:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   79 |     if (!key || EC_KEY_generate_key(key) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:80:5: warning: 'EC_KEY_get0_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   80 |     d = EC_KEY_get0_private_key(key);
+      |     ^
+/usr/include/openssl/ec.h:1059:37: note: declared here
+ 1059 | OSSL_DEPRECATEDIN_3_0 const BIGNUM *EC_KEY_get0_private_key(const EC_KEY *key);
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:85:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   85 |     EC_KEY_free(key); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_encrypt':
+src/secr2r_ecies.c:98:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   98 |     ephemeral = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~~~~~~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:99:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   99 |     if (!ephemeral || EC_KEY_generate_key(ephemeral) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_decrypt':
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+./bin/test_ecc_elgamal
+secp521r1 ECC ElGamal tests passed (round-trip; textbook malleability remains)
+cc -O2 -std=c11 -Wall -Wextra -Wpedantic -Iinclude tests/test_hash.c src/bch.c src/secure_random.c src/fuzzy_extractor.c src/secr2r_hash.c src/secr2r_ecc_elgamal.c src/secr2r_ecies.c src/secr2r_protocol_crypto.c  -lssl -lcrypto  -o bin/test_hash
+src/secr2r_ecies.c: In function 'key_from_private':
+src/secr2r_ecies.c:16:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   16 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+In file included from src/secr2r_ecies.c:4:
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:18:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   18 |     group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1067:27: note: declared here
+ 1067 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_private_key(EC_KEY *key, const BIGNUM *prv);
+      |                           ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:25:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   25 |         EC_KEY_check_key(key) != 1) goto err;
+      |         ^~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:28:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   28 |     BN_clear_free(d); EC_POINT_free(q); EC_KEY_free(key); return NULL;
+      |     ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'parse_public':
+src/secr2r_ecies.c:34:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   34 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:36:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   36 |     group = EC_KEY_get0_group(key); point = EC_POINT_new(group);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:41:9: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   41 |         EC_POINT_free(point); EC_KEY_free(key); return 0;
+      |         ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'serialize_public':
+src/secr2r_ecies.c:47:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   47 |     const EC_GROUP *group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:48:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   48 |     const EC_POINT *point = EC_KEY_get0_public_key(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'derive_key':
+src/secr2r_ecies.c:57:5: warning: 'ECDH_compute_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1307:27: note: declared here
+ 1307 | OSSL_DEPRECATEDIN_3_0 int ECDH_compute_key(void *out, size_t outlen,
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:57:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_keygen':
+src/secr2r_ecies.c:78:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   78 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:79:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   79 |     if (!key || EC_KEY_generate_key(key) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:80:5: warning: 'EC_KEY_get0_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   80 |     d = EC_KEY_get0_private_key(key);
+      |     ^
+/usr/include/openssl/ec.h:1059:37: note: declared here
+ 1059 | OSSL_DEPRECATEDIN_3_0 const BIGNUM *EC_KEY_get0_private_key(const EC_KEY *key);
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:85:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   85 |     EC_KEY_free(key); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_encrypt':
+src/secr2r_ecies.c:98:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   98 |     ephemeral = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~~~~~~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:99:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   99 |     if (!ephemeral || EC_KEY_generate_key(ephemeral) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_decrypt':
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+./bin/test_hash
+h = SHA-256 (256-bit output) test passed
+cc -O2 -std=c11 -Wall -Wextra -Wpedantic -Iinclude tests/test_protocol_crypto.c src/bch.c src/secure_random.c src/fuzzy_extractor.c src/secr2r_hash.c src/secr2r_ecc_elgamal.c src/secr2r_ecies.c src/secr2r_protocol_crypto.c  -lssl -lcrypto  -o bin/test_protocol_crypto
+src/secr2r_ecies.c: In function 'key_from_private':
+src/secr2r_ecies.c:16:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   16 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+In file included from src/secr2r_ecies.c:4:
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:18:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   18 |     group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1067:27: note: declared here
+ 1067 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_private_key(EC_KEY *key, const BIGNUM *prv);
+      |                           ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:25:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   25 |         EC_KEY_check_key(key) != 1) goto err;
+      |         ^~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:28:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   28 |     BN_clear_free(d); EC_POINT_free(q); EC_KEY_free(key); return NULL;
+      |     ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'parse_public':
+src/secr2r_ecies.c:34:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   34 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:36:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   36 |     group = EC_KEY_get0_group(key); point = EC_POINT_new(group);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:41:9: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   41 |         EC_POINT_free(point); EC_KEY_free(key); return 0;
+      |         ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'serialize_public':
+src/secr2r_ecies.c:47:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   47 |     const EC_GROUP *group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:48:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   48 |     const EC_POINT *point = EC_KEY_get0_public_key(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'derive_key':
+src/secr2r_ecies.c:57:5: warning: 'ECDH_compute_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1307:27: note: declared here
+ 1307 | OSSL_DEPRECATEDIN_3_0 int ECDH_compute_key(void *out, size_t outlen,
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:57:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_keygen':
+src/secr2r_ecies.c:78:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   78 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:79:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   79 |     if (!key || EC_KEY_generate_key(key) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:80:5: warning: 'EC_KEY_get0_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   80 |     d = EC_KEY_get0_private_key(key);
+      |     ^
+/usr/include/openssl/ec.h:1059:37: note: declared here
+ 1059 | OSSL_DEPRECATEDIN_3_0 const BIGNUM *EC_KEY_get0_private_key(const EC_KEY *key);
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:85:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   85 |     EC_KEY_free(key); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_encrypt':
+src/secr2r_ecies.c:98:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   98 |     ephemeral = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~~~~~~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:99:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   99 |     if (!ephemeral || EC_KEY_generate_key(ephemeral) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_decrypt':
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+./bin/test_protocol_crypto
+SecR2R protocol ENC/DEC adapter tests: PASS
+cc -O2 -std=c11 -Wall -Wextra -Wpedantic -Iinclude tests/test_ecies.c src/bch.c src/secure_random.c src/fuzzy_extractor.c src/secr2r_hash.c src/secr2r_ecc_elgamal.c src/secr2r_ecies.c src/secr2r_protocol_crypto.c  -lssl -lcrypto  -o bin/test_ecies
+src/secr2r_ecies.c: In function 'key_from_private':
+src/secr2r_ecies.c:16:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   16 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+In file included from src/secr2r_ecies.c:4:
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:18:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   18 |     group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1067:27: note: declared here
+ 1067 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_private_key(EC_KEY *key, const BIGNUM *prv);
+      |                           ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:24:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   24 |         EC_KEY_set_private_key(key, d) != 1 || EC_KEY_set_public_key(key, q) != 1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:25:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   25 |         EC_KEY_check_key(key) != 1) goto err;
+      |         ^~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:28:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   28 |     BN_clear_free(d); EC_POINT_free(q); EC_KEY_free(key); return NULL;
+      |     ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'parse_public':
+src/secr2r_ecies.c:34:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   34 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:36:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   36 |     group = EC_KEY_get0_group(key); point = EC_POINT_new(group);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_set_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1081:27: note: declared here
+ 1081 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:40:9: warning: 'EC_KEY_check_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   40 |         EC_KEY_set_public_key(key, point) != 1 || EC_KEY_check_key(key) != 1) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1118:27: note: declared here
+ 1118 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_check_key(const EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:41:9: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   41 |         EC_POINT_free(point); EC_KEY_free(key); return 0;
+      |         ^~~~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'serialize_public':
+src/secr2r_ecies.c:47:5: warning: 'EC_KEY_get0_group' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   47 |     const EC_GROUP *group = EC_KEY_get0_group(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1045:39: note: declared here
+ 1045 | OSSL_DEPRECATEDIN_3_0 const EC_GROUP *EC_KEY_get0_group(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:48:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   48 |     const EC_POINT *point = EC_KEY_get0_public_key(key);
+      |     ^~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'derive_key':
+src/secr2r_ecies.c:57:5: warning: 'ECDH_compute_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1307:27: note: declared here
+ 1307 | OSSL_DEPRECATEDIN_3_0 int ECDH_compute_key(void *out, size_t outlen,
+      |                           ^~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:57:5: warning: 'EC_KEY_get0_public_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |     shared_len = ECDH_compute_key(shared, sizeof(shared), EC_KEY_get0_public_key(peer),
+      |     ^~~~~~~~~~
+/usr/include/openssl/ec.h:1073:39: note: declared here
+ 1073 | OSSL_DEPRECATEDIN_3_0 const EC_POINT *EC_KEY_get0_public_key(const EC_KEY *key);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_keygen':
+src/secr2r_ecies.c:78:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   78 |     key = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:79:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   79 |     if (!key || EC_KEY_generate_key(key) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:80:5: warning: 'EC_KEY_get0_private_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   80 |     d = EC_KEY_get0_private_key(key);
+      |     ^
+/usr/include/openssl/ec.h:1059:37: note: declared here
+ 1059 | OSSL_DEPRECATEDIN_3_0 const BIGNUM *EC_KEY_get0_private_key(const EC_KEY *key);
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:85:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   85 |     EC_KEY_free(key); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_encrypt':
+src/secr2r_ecies.c:98:5: warning: 'EC_KEY_new_by_curve_name' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   98 |     ephemeral = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+      |     ^~~~~~~~~
+/usr/include/openssl/ec.h:1009:31: note: declared here
+ 1009 | OSSL_DEPRECATEDIN_3_0 EC_KEY *EC_KEY_new_by_curve_name(int nid);
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:99:5: warning: 'EC_KEY_generate_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   99 |     if (!ephemeral || EC_KEY_generate_key(ephemeral) != 1) goto done;
+      |     ^~
+/usr/include/openssl/ec.h:1112:27: note: declared here
+ 1112 | OSSL_DEPRECATEDIN_3_0 int EC_KEY_generate_key(EC_KEY *key);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:119:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  119 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c: In function 'secr2r_ecies_decrypt':
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+src/secr2r_ecies.c:150:5: warning: 'EC_KEY_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  150 |     EC_KEY_free(ephemeral); EC_KEY_free(recipient); return ok;
+      |     ^~~~~~~~~~~
+/usr/include/openssl/ec.h:1014:28: note: declared here
+ 1014 | OSSL_DEPRECATEDIN_3_0 void EC_KEY_free(EC_KEY *key);
+      |                            ^~~~~~~~~~~
+./bin/test_ecies
+ECIES tests passed
